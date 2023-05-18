@@ -3,7 +3,7 @@ import { TextField, Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddRestaurant.module.scss";
-import { Modal } from "./Modal";
+import { Modal } from "../../Modal";
 
 export const AddRestaurant = () => {
   const [nomeRestaurante, setNomeRestaurante] = useState("");
@@ -12,7 +12,6 @@ export const AddRestaurant = () => {
 
   const handleFormSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("preciso enviar dados para api:", nomeRestaurante);
 
     axios
       .post("http://localhost:8000/api/v2/restaurantes/", {
@@ -32,6 +31,7 @@ export const AddRestaurant = () => {
 
   return (
     <>
+      <h1>Adicionar Novo Restaurante</h1>
       <form className={styles.formContainer} onSubmit={handleFormSubmit}>
         <TextField
           className={styles.formField}
@@ -48,7 +48,6 @@ export const AddRestaurant = () => {
           Salvar
         </Button>
       </form>
-
       {showModal && (
         <Modal>
           <div className={styles.modalContent}>
