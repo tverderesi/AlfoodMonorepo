@@ -2,114 +2,49 @@ import style from "./RestaurantsList.module.scss";
 import { Restaurant } from "./Restaurant";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { IPagination } from "../../interfaces/IPagination";
 import { IRestaurant } from "../../interfaces/IRestaurant";
-
-const ListaRestaurantes = () => {
+import { Button, Container } from "@mui/material";
+import { Outlet } from "react-router-dom";
+export const ListaRestaurantes = () => {
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
+  const [nextPage, setNextPage] = useState<string | null>(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/v1/restaurantes/")
-      .then((response) => {
-        setRestaurants(response.data.results);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    obterRestaurantes();
   }, []);
 
-  const restaurantes: IRestaurant[] = [
-    {
-      id: 1,
-      nome: "Lyllys Cafe",
-      pratos: [
-        {
-          id: 1,
-          descricao: "Lasanha à Bolonhesa",
-          imagem:
-            "https://receitassaborosa.com/wp-content/uploads/2019/12/Lasanha-com-Molho-a-Bolonhesa.jpg",
-          nome: "Lasanha",
-          restaurante: 1,
-          tag: "Italiana",
-        },
-        {
-          id: 2,
-          descricao: "Strogonoff de Frango à brasileira",
-          imagem:
-            "https://img.itdg.com.br/images/recipes/000/002/462/332854/332854_original.jpg",
-          nome: "Strogonoff",
-          restaurante: 1,
-          tag: "Russa",
-        },
-        {
-          id: 3,
-          descricao: "Empadão de Frango",
-          imagem:
-            "https://t1.uc.ltmcdn.com/pt/images/5/7/1/img_como_fazer_empadao_de_frango_27175_600.jpg",
-          nome: "Empadão de Frango",
-          restaurante: 1,
-          tag: "Portuguesa",
-        },
-      ],
-    },
-    {
-      id: 2,
-      nome: "Sugiro Sushi",
-      pratos: [
-        {
-          id: 1,
-          descricao: "Combinado de 8 peças",
-          imagem:
-            "https://www.sabornamesa.com.br/media/k2/items/cache/5031e263a4a258791d6306b2d3d9dbf6_XL.jpg",
-          nome: "Sushi",
-          restaurante: 1,
-          tag: "Japonesa",
-        },
-        {
-          id: 2,
-          descricao: "Sashimi de Salmão",
-          imagem:
-            "https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2009/04/sashimi_facil.jpg",
-          nome: "Sashimi",
-          restaurante: 1,
-          tag: "Japonesa",
-        },
-      ],
-    },
-    {
-      id: 3,
-      nome: "Cantina da Escola",
-      pratos: [
-        {
-          id: 1,
-          descricao: "Salgado de queijo com presunto",
-          imagem:
-            "https://img.itdg.com.br/tdg/images/recipes/000/102/312/279767/279767_original.jpg",
-          nome: "Quejunto",
-          restaurante: 1,
-          tag: "Lanche",
-        },
-        {
-          id: 2,
-          descricao: "Coxinha de Frango",
-          imagem:
-            "https://t1.rg.ltmcdn.com/pt/posts/1/9/1/coxinha_simples_191_600.jpg",
-          nome: "Coxinha",
-          restaurante: 1,
-          tag: "Lanche",
-        },
-        {
-          id: 3,
-          descricao: "Risole de Palmito",
-          imagem:
-            "https://img.itdg.com.br/tdg/images/recipes/000/005/116/323871/323871_original.jpg",
-          nome: "Risole",
-          restaurante: 1,
-          tag: "Lanche",
-        },
-      ],
-    },
-  ];
+  const obterRestaurantes = async () => {
+    try {
+      const response = await axios.get<IPagination<IRestaurant>>(
+        "http://localhost:8000/api/v1/restaurantes/"
+      );
+      setRestaurants(response.data.results);
+      setNextPage(response.data.next);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadMoreRestaurants = async () => {
+    try {
+      if (nextPage) {
+        const response = await axios.get<IPagination<IRestaurant>>(nextPage);
+        setRestaurants((prevRestaurants) => {
+          const newRestaurants = response.data.results.filter(
+            (restaurant) =>
+              !prevRestaurants.some(
+                (prevRestaurant) => prevRestaurant.id === restaurant.id
+              )
+          );
+          return [...prevRestaurants, ...newRestaurants];
+        });
+        setNextPage(response.data.next);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className={style.RestaurantList}>
@@ -119,8 +54,30 @@ const ListaRestaurantes = () => {
       {restaurants?.map((item) => (
         <Restaurant restaurant={item} key={item.id} />
       ))}
+      {nextPage && (
+        <Container
+          style={{
+            width: "100vw",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1rem",
+          }}
+        >
+          <Button
+            onClick={loadMoreRestaurants}
+            variant="contained"
+            style={{
+              padding: ".5rem 1rem",
+              width: "25%",
+            }}
+          >
+            Load More
+          </Button>
+          <Outlet />
+        </Container>
+      )}
     </section>
   );
 };
-
-export default ListaRestaurantes;
