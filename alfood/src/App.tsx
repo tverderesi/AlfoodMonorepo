@@ -1,14 +1,22 @@
-import { Routes, Route } from 'react-router-dom';
-import Home from './paginas/Home';
-import VitrineRestaurantes from './paginas/VitrineRestaurantes';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from "./paginas/Home";
+import { ListaRestaurantes } from "./componentes/ListaRestaurantes";
+import { AdminRestaurants } from "./componentes/AdminPage";
+import { PageLayout } from "./componentes/PageLayout";
+import { AddRestaurant } from "./componentes/AdminPage/AddRestaurant";
 
 function App() {
-
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/restaurantes" element={<VitrineRestaurantes />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/restaurantes" element={<ListaRestaurantes />} />
+          <Route path="/admin" element={<AdminRestaurants />} />
+          <Route path="/admin/add" element={<AddRestaurant />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

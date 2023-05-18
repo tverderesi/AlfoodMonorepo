@@ -1,0 +1,41 @@
+.adminRestaurantsContainer {
+  margin: 20px;
+
+  .addRestaurantButton {
+    margin-bottom: 10px;
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    align-items: center;
+    padding: 1rem;
+
+    &:hover {
+      &::after {
+        content: "Adicionar restaurante";
+
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+
+  .restaurantsTable {
+    width: 100%;
+
+    th {
+      font-weight: bold;
+    }
+
+    td {
+      padding: 10px;
+    }
+  }
+}
