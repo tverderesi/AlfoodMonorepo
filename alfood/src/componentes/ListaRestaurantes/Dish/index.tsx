@@ -1,5 +1,5 @@
 import { IDish } from "../../../interfaces/IDish";
-import estilos from "./dish.module.scss";
+import estilos from "./Dish.module.scss";
 
 export const Dish = ({ dish }: { dish: IDish }) => {
   return (

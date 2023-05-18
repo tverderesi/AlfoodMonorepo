@@ -3,16 +3,14 @@ import { Restaurant } from "./Restaurant";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IRestaurant } from "../../interfaces/IRestaurant";
-import { IDish } from "../../interfaces/IDish";
 
 const ListaRestaurantes = () => {
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
-  const [dishes, setDishes] = useState<IDish[]>([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/v1/restaurantes/")
       .then((response) => {
-        console.log(response.data);
         setRestaurants(response.data.results);
       })
       .catch((error) => {
