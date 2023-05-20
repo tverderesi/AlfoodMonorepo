@@ -112,7 +112,7 @@ export const EditRestaurant = () => {
               <TableRow key={prato.id}>
                 <TableCell>{prato.nome}</TableCell>
                 <TableCell width="6">
-                  <Link to={`/admin/edit/pratos/${prato.id}`}>
+                  <Link to={`/admin/edit/prato/${prato.id}`}>
                     <span className="material-symbols-outlined">edit</span>
                   </Link>
                 </TableCell>

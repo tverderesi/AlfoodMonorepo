@@ -5,7 +5,7 @@ import { AdminRestaurants } from "./pages/AdminPage";
 import { PageLayout } from "./components/PageLayout";
 import { AddRestaurant } from "./pages/AdminPage/Add/AddRestaurant";
 import { EditRestaurant } from "./pages/AdminPage/Edit/EditRestaurant";
-import { EditDish } from "./pages/AdminPage/Edit/EditDish";
+import { AddEditDish } from "./pages/AdminPage/Edit/AddEditDish";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/admin/add" element={<AddRestaurant />} />
           <Route path="/admin/edit/:id" element={<EditRestaurant />} />
           <Route path="*" element={<h1>Not Found</h1>} />
-          <Route path="/admin/edit/prato/:id" element={<EditDish />} />
+          <Route path="/admin/edit/prato/:id" element={<AddEditDish />} />
         </Route>
       </Routes>
     </Router>
