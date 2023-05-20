@@ -1,0 +1,23 @@
+.RestaurantList {
+  margin-top: 1.5rem;
+  padding: 2rem;
+}
+
+.Error {
+  margin-top: 1rem;
+  color: red;
+}
+
+.LoadMoreContainer {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.LoadMoreButton {
+  padding: 0.5rem 1rem;
+  width: 25%;
+}

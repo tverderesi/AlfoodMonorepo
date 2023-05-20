@@ -1,16 +1,26 @@
+.container {
+  margin: 0rem 2rem 4rem 2rem;
+  min-height: 90vh;
+}
+
+.addDishButton {
+  margin-bottom: 10px;
+  position: fixed;
+  right: 5%;
+  bottom: 10%;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
 .formContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding: 20px;
 
-  .formField {
-    margin-bottom: 10px;
-  }
-
-  .submitButton {
-    margin-top: 20px;
-  }
+  gap: 1rem;
 }
 .modalContent {
   display: flex;

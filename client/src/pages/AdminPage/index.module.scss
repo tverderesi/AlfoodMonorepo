@@ -1,0 +1,24 @@
+.adminRestaurantsContainer {
+  margin: 0rem 2rem 4rem 2rem;
+  min-height: 90vh;
+  .addRestaurantButton {
+    margin-bottom: 10px;
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    align-items: center;
+    padding: 1rem;
+
+    gap: 0.5rem;
+  }
+
+  .restaurantsTable {
+    th {
+      font-weight: bold;
+    }
+
+    td {
+      padding: 10px;
+    }
+  }
+}

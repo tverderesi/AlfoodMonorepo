@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Banner } from "../../componentes/Banner";
+import { Banner } from "../../components/Banner";
 import estilos from "./Home.module.scss";
 
 export function Home() {
