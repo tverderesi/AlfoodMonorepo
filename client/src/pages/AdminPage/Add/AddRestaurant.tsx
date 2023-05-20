@@ -3,7 +3,7 @@ import { TextField, Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddRestaurant.module.scss";
-import { Modal } from "../../Modal";
+import { Modal } from "../../../components/Modal";
 
 export const AddRestaurant = () => {
   const [nomeRestaurante, setNomeRestaurante] = useState("");

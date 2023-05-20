@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-import { NavBar } from "./NavBar";
-import { Footer } from "./Rodape";
+import { NavBar } from "./Header";
+import { Footer } from "./Footer";
 
 export const PageLayout = () => {
   return (

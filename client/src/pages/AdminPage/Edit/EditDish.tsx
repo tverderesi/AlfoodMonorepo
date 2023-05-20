@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./EditRestaurant.module.scss";
-import { Modal } from "../../Modal";
+import { Modal } from "../../../components/Modal";
 import { IDish } from "../../../interfaces/IDish";
 import { Link } from "react-router-dom";
 

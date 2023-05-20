@@ -4,8 +4,9 @@
 }
 
 .addDishButton {
+  position: fixed !important;
   margin-bottom: 10px;
-  position: fixed;
+
   right: 5%;
   bottom: 10%;
   align-items: center;

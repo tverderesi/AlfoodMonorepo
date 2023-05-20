@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./EditRestaurant.module.scss";
-import { Modal } from "../../Modal";
+import { Modal } from "../../../components/Modal";
 import { IDish } from "../../../interfaces/IDish";
 import { Link } from "react-router-dom";
 
@@ -73,7 +73,7 @@ export const EditRestaurant = () => {
         className={styles.addDishButton}
       >
         <span className="material-symbols-outlined">add_circle</span>
-        Novo restaurante
+        Novo Prato
       </Fab>
       <Typography variant="h4" className={styles.title} textAlign="center">
         Editar restaurante

@@ -1,47 +1,65 @@
 import { Link } from "react-router-dom";
+import { Typography, Grid, Card, CardContent } from "@mui/material";
 import { Banner } from "../../components/Banner";
-import estilos from "./Home.module.scss";
+import styles from "./Home.module.scss";
 
 export function Home() {
   return (
     <>
       <Banner />
-      <div className={estilos.MiniBanners}>
+      <div className={styles.MiniBanners}>
         <img src="/imagens/cozinhar_01.jpg" alt="Um prato conceitual" />
-        <div className={estilos.CardCentral}>
-          <h2>A melhor rede de restaurantes!</h2>
-          <div>
-            <p>seja um parceiro agora:</p>
-            <p>
-              ligue para <a href="callto:99999999999">(99) 99999-999</a>
-            </p>
-          </div>
-        </div>
+
+        <Card className={styles.CentralCard}>
+          <CardContent>
+            <Typography variant="h4">A melhor rede de restaurantes!</Typography>
+            <div>
+              <Typography variant="body1">seja um parceiro agora:</Typography>
+              <Typography variant="body1">
+                ligue para{" "}
+                <a href="callto:99999999999" className={styles.PhoneLink}>
+                  (99) 99999-999
+                </a>
+              </Typography>
+            </div>
+          </CardContent>
+        </Card>
+
         <img src="/imagens/cozinhar_02.jpg" alt="Um hambúrguer desconstruído" />
       </div>
-      <div className={estilos.Categorias}>
-        <div className={estilos.TipoDePrato}>
+      <Grid
+        container
+        spacing={2}
+        className={styles.Categories}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={6} sm={3} className={styles.DishType}>
           <img src="/imagens/cafedamanha.png" alt="Café da manhã" />
-          <h4>Café da manhã</h4>
-        </div>
-        <div className={estilos.TipoDePrato}>
+          <Typography variant="h4">Café da manhã</Typography>
+        </Grid>
+        <Grid item xs={6} sm={3} className={styles.DishType}>
           <img src="/imagens/almoco.png" alt="Almoço" />
-          <h4>Almoço</h4>
-        </div>
-        <div className={estilos.TipoDePrato}>
+          <Typography variant="h4">Almoço</Typography>
+        </Grid>
+        <Grid item xs={6} sm={3} className={styles.DishType}>
           <img src="/imagens/jantar.png" alt="Jantar" />
-          <h4>Jantar</h4>
-        </div>
-        <div className={estilos.TipoDePrato}>
+          <Typography variant="h4">Jantar</Typography>
+        </Grid>
+        <Grid item xs={6} sm={3} className={styles.DishType}>
           <img src="/imagens/sobremesa.png" alt="Sobremesas" />
-          <h4>Sobremesas</h4>
-        </div>
-      </div>
-      <div className={estilos.Links}>
-        <h3>Conheça os melhores restaurantes</h3>
-        <p>
-          Clique <Link to="/restaurantes">aqui</Link>
-        </p>
+          <Typography variant="h4">Sobremesas</Typography>
+        </Grid>
+      </Grid>
+      <div className={styles.LinkContainer}>
+        <Typography
+          variant="h4"
+          component={Link}
+          to="/restaurantes"
+          className={styles.Links}
+        >
+          Conheça os melhores restaurantes
+        </Typography>
       </div>
     </>
   );
